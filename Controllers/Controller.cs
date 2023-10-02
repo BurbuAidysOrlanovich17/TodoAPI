@@ -9,13 +9,13 @@ using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[Controller]")]
     [ApiController]
-    public class TodoItemsController : ControllerBase
+    public class Controller : ControllerBase
     {
         private readonly TodoContext _context;
 
-        public TodoItemsController(TodoContext context)
+        public Controller(TodoContext context)
         {
             _context = context;
         }
@@ -35,10 +35,6 @@ namespace TodoApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
-          if (_context.TodoItems == null)
-          {
-              return NotFound();
-          }
             var todoItem = await _context.TodoItems.FindAsync(id);
 
             if (todoItem == null)
